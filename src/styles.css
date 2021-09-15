@@ -1,0 +1,133 @@
+/* .App {
+  font-family: sans-serif;
+  text-align: left;
+  margin: 0px;
+  padding: 0px;
+  
+} */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Times New Roman", Georgia, Serif;
+}
+body {
+  background: black;
+  color: white;
+}
+footer {
+  display: block;
+  padding: 1.2rem;
+  background: black;
+  color: white;
+  bottom: 0;
+  text-align: center;
+  margin-top: 2rem;
+  position: relative;
+}
+li {
+  list-style-type: none;
+}
+.header-btn {
+  padding: 0.5rem 1rem;
+  margin: 1rem;
+  border-radius: 5px;
+  border: none;
+  background-color: cornflowerblue;
+  color: white;
+  font-size: 1.1rem;
+  box-shadow: 0px 0px 0px 0px gray;
+}
+.header-btn:hover {
+  box-shadow: 0px 9px 15px 0px gray;
+}
+.product-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+  background-color: cornflowerblue;
+  color: white;
+  font-size: 0.9rem;
+}
+.link {
+  text-decoration: none;
+  margin: 1rem;
+  padding: 0.5rem;
+}
+
+@media only screen and (max-width: 400px) {
+  html {
+    font-size: 12px;
+  }
+}
+@media only screen and (max-width: 576px) {
+  html {
+    font-size: 15px;
+  }
+}
+@media only screen and (max-width: 300px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+.floating-btn {
+  /* background-image: var(--blue); */
+  /* background-color: #4158D0; */
+  /* background-image: linear-gradient(
+    43deg,
+    #4158d0 0%,
+    #c850c0 46%,
+    #ffcc70 100%
+  ); */
+  /* background-image: linear-gradient(
+    90.5deg,
+    rgba(250, 156, 245, 1) 1.6%,
+    rgba(182, 76, 233, 1) 98.2%
+  ); */
+  /* background-image: linear-gradient(
+    112.5deg,
+    rgba(95, 10, 135, 1) 11.4%,
+    rgba(164, 80, 139, 1) 60.2%
+  ); */
+  /* background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(91,140,245,1) 0%, rgba(240,131,252,1) 79.4% ); */
+  /* background-image: linear-gradient(
+    109.2deg,
+    rgba(249, 174, 240, 1) 6.5%,
+    rgba(139, 144, 250, 1) 97.1%
+  ); */
+  background-color: #21D4FD;
+background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+
+
+
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  /* box-shadow: 0 5px 9px 0 grey; */
+  font-size: 20px;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  /* margin-top: 30rem; */
+  position: fixed;
+  z-index: 999;
+}
+
+#outer-container {
+  position: relative;
+}
+
+#scrollable {
+  height: 100px;
+  overflow-y: auto;
+}
+
+#social-float {
+  position: absolute;
+  bottom: 0px;
+  right: 0.5rem;
+}
