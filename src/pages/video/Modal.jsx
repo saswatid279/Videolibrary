@@ -59,7 +59,7 @@ export default function Modal({ video }) {
   };
 
 
-  function addtoPlaylist(iteminplaylist) {}
+  //function addtoPlaylist(iteminplaylist) {}
 
   if(playlist.length===0){
     return (
