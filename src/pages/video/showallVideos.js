@@ -27,7 +27,7 @@ const ShowallVideos=(video)=>{
             <p>{video.name}</p>
             <small>{video.channelname}</small>
           </div>
-          <div>
+          <div className="ellipsis-container">
             <Ellipsis
               className="ellipsis"
               width="1.3rem"
@@ -35,9 +35,10 @@ const ShowallVideos=(video)=>{
               style={{ cursor: "pointer", fill: "white" }}
               onClick={() => setshow(true)}
             />
+            <span>{show && <Modal video={video} />}</span>
           </div>
         </div>
-        {show && <Modal video={video} />}
+        
       </div>
     </div>
   );

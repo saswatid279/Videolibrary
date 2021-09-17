@@ -3,6 +3,7 @@ import { usePlaylist } from "../../context/playlist-context";
 import { useWatchlater } from "../../context/watchlater-context";
 import { useLikedvideo } from "../../context/likedvideo-context";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import "./videos.css";
 
 export default function Modal({ video }) {
@@ -10,6 +11,7 @@ export default function Modal({ video }) {
   const { likedvideodispatch } = useLikedvideo();
   const { watchlaterdispatch } = useWatchlater();
   const { playlist } = usePlaylist();
+
   const Addtolikedvideos = () => {
     (async () => {
       const { success, video: data } = await axios
@@ -20,7 +22,7 @@ export default function Modal({ video }) {
           channellogourl: video.channellogourl,
           channelname: video.channelname,
           date: video.date,
-          videourl: video.videourl
+          videourl: video.videourl,
         })
         .then((response) => {
           return response.data;
@@ -32,6 +34,7 @@ export default function Modal({ video }) {
       }
     })();
   };
+
   const Addtowatchlater = () => {
     (async () => {
       const { success, video: data } = await axios
@@ -42,7 +45,7 @@ export default function Modal({ video }) {
           channellogourl: video.channellogourl,
           channelname: video.channelname,
           date: video.date,
-          videourl: video.videourl
+          videourl: video.videourl,
         })
         .then((response) => {
           return response.data;
@@ -54,46 +57,24 @@ export default function Modal({ video }) {
       }
     })();
   };
-  function createPlaylist() {
-    console.log("playlist");
-  }
+
+
   function addtoPlaylist(iteminplaylist) {}
-  
+
+  if(playlist.length===0){
     return (
-      <>
-        <div className="contextMenu">
-        if (playlist.length === 0){
-          <button className="contextMenu--option" onClick={createPlaylist()}>Create playlist</button>
-        }
-        else{
-          <div className="modal" >
-          <div>
-            <a href="#open-modal" className="link1">
-              Add to Playlist
-            </a>
-          </div>
-          <div id="open-modal" class="modal-window">
-            <div>
-              <a href="/" title="Close" className="modal-close">
-                Close
-              </a>
-              <h2>Select a Playlist</h2>
-              {playlist.map((item) => {
-                return (
-                  <div onClick={addtoPlaylist(item)}>{item.playlistname}</div>
-                );
-              })}
-            </div>
-          </div>
-          </div>
-          }
-          <button onClick={() => Addtowatchlater()}>Save to watch later</button>
-          <button onClick={() => Addtolikedvideos()}>
-            Save to Liked Videos
-          </button>
-          </div>
-        
-      </>
+      <div>
+          <Link to="/playlist"><button className="modal-btn" >Create playlist</button></Link>
+          <button className="modal-btn" onClick={() => Addtowatchlater()}>Save to watch later</button>
+          <button className="modal-btn" onClick={() => Addtolikedvideos()}>Save to Liked Videos</button>
+      </div>
     );
   }
-
+  return (
+    <div>
+        <button className="modal-btn" >Add to playlist</button>
+        <button className="modal-btn" onClick={() => Addtowatchlater()}>Save to watch later</button>
+        <button className="modal-btn" onClick={() => Addtolikedvideos()}>Save to Liked Videos</button>
+    </div>
+  );
+}

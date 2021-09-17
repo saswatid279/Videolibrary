@@ -73,9 +73,7 @@ export default function Playlist() {
               >
                 See Videos
               </button>
-              {/* <button className=" " onClick={() => Addtocart(playlists)}>
-              Add to Cart
-            </button> */}
+              
             </span>
           </div>
         </>

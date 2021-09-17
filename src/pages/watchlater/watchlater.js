@@ -1,74 +1,52 @@
 import { useWatchlater } from "../../context/watchlater-context";
-// import { useCart } from "../../context/cart-context";
-//import "./likedvideolist.css";
-import axios from "axios";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { ReactComponent as Ellipsis } from "../../images/ellipsis.svg";
+import Watchlatermodal from "./Watchlatermodal";
 
 export default function Watchlater() {
-  const { watchlater, watchlaterdispatch } = useWatchlater();
+  const { watchlater } = useWatchlater();
 
-  const removefromwatchlater = (id) => {
-    (async () => {
-      const { success } = await axios
-        .delete(`https://videolibrary.saswatidas.repl.co/watchlater/${id}`)
-        .then((response) => {
-          return response.data;
-        });
-      if (success) {
-        watchlaterdispatch({ type: "REMOVE", payload: id });
-      } else {
-        console.log("error occured while removing video");
-      }
-    })();
-  };
-  // const Addtocart = (video) => {
-  //   console.log(video._id);
-  //   (async () => {
-  //     const { success, product: data } = await axios
-  //       .post("https://homedecor.saswatidas.repl.co/cart", {
-  //         _id: video._id,
-  //         info: video.info,
-  //         name: video.name,
-  //         price: video.price,
-  //         quantity: 1,
-  //         url: video.url,
-  //         fastdelivery: video.fastdelivery,
-  //         instock: video.instock
-  //       })
-  //       .then((response) => {
-  //         return response.data;
-  //       });
-
-  //     if (success) {
-  //       dispatch({ type: "add", payload: video });
-  //     } else {
-  //       console.log("error");
-  //     }
-  //   })();
-  //};
+  
+  
   function Showiteminwatchlater(video) {
-    if (watchlater !== " ")
-      return (
-        <div
-          style={{
-            border: `1px solid black`,
-            padding: `1rem`,
-            margin: `1rem`
-          }}
-        >
-          <li key={video._id}> {video.name}</li>
-          <p>{video.price}</p>
-          <span>
-            <button
-              className=" "
-              onClick={() => removefromwatchlater(video._id)}
-            >
-              Remove
-            </button>
-          </span>
+    const [show, setshow] = useState(false);
+    return (
+      <div>
+        <div className="productcard">
+          <Link
+            to={`/videos/${video._id}`}
+            style={{
+              textDecoration: "none",
+              color: "black",
+              cursor: "pointer",
+            }}
+          >
+            <img src={video.imageurl} alt="not available" width="100%" />
+          </Link>
+          <div className="card-content">
+            <div className="logo">
+              <img src={`${video.channellogourl}`} alt=" not available" />
+            </div>
+
+            <div className="videoname">
+              <p>{video.name}</p>
+              <small>{video.channelname}</small>
+            </div>
+            <div className="ellipsis-container">
+              <Ellipsis
+                className="ellipsis"
+                width="1.3rem"
+                height="1.3rem"
+                style={{ cursor: "pointer", fill: "white" }}
+                onClick={() => setshow(true)}
+              />
+              <span>{show && <Watchlatermodal video={video} />}</span>
+            </div>
+          </div>
         </div>
-      );
-    else return <div></div>;
+      </div>
+    );
   }
   if (watchlater.length !== 0)
     return (
