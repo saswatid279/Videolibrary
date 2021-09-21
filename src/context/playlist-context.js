@@ -12,14 +12,14 @@ export const PlaylistProvider = ({ children }) => {
   useEffect(() => {
     (async () => {
       const { success, playlists: data } = await axios
-        .get("https://videolibrary.saswatidas.repl.co/playlists")
+        .get("https://VL.saswatidas.repl.co/playlists")
         .then((response) => {
           return response.data;
         });
         if(success)
       playlistdispatch({ type: "FETCH", payload: data });
     })();
-  }, []);
+  }, [playlistdispatch]);
 
   return (
     <PlaylistContext.Provider

@@ -35,7 +35,7 @@ const ShowallVideos=(video)=>{
               style={{ cursor: "pointer", fill: "white" }}
               onClick={() => setshow(true)}
             />
-            <span>{show && <Modal video={video} />}</span>
+            <span>{show && <Modal video={video} setshow={setshow}/>}</span>
           </div>
         </div>
         

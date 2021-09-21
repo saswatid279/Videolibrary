@@ -10,7 +10,7 @@ export function playlistReducer(state, action) {
         ...state,
         playlistvideos: action.payload
       };
-    case "ADD_TO_PLAYLIST":
+    case "CREATE_PLAYLIST":
       let count = 0;
       state.playlist.map((item) => {
         if (item._id === action.payload._id) count = count + 1;
@@ -22,6 +22,7 @@ export function playlistReducer(state, action) {
           playlist: [...state.playlist, action.payload]
         };
       return state;
+
     case "REMOVE":
       return {
         ...state,

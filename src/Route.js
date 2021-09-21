@@ -10,6 +10,7 @@ import { Routes, Route } from "react-router-dom";
 
 import Showvideo from "./pages/video/showvideo";
 import Watchlater from "./pages/watchlater/watchlater.js";
+// import Playlistvideos from "./pages/playlist/Playlistvideos.js";
 
 export default function Routepath() {
   return (
@@ -23,6 +24,7 @@ export default function Routepath() {
           <Route path="/likedvideos" element={<Likedvideos />} />
           <Route path="/watchlater" element={<Watchlater />} />
           <Route path="/playlist" element={<Playlist />} />
+          {/* <Route path="/playlistvideos/:playlistId" element={<Playlistvideos />} /> */}
           <Route path="*" element={<Nomatch />} />
         </Routes>
      

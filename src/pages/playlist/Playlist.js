@@ -2,7 +2,7 @@ import { usePlaylist } from "../../context/playlist-context";
 import "./playlist.css";
 import axios from "axios";
 import { useState } from "react";
-import ShowallVideos from "../video/showallVideos";
+
 
 export default function Playlist() {
   const [playlist_name, setplaylistname] = useState();
@@ -37,7 +37,7 @@ export default function Playlist() {
         });
 
       if (success) {
-        playlistdispatch({ type: "ADD_TO_PLAYLIST", payload: playlist_name });
+        playlistdispatch({ type: "CREATE_PLAYLIST", payload: playlist_name });
       } else {
         console.log("error");
       }
@@ -62,18 +62,12 @@ export default function Playlist() {
               >
                 Remove
               </button>
-              <button
+              {/* <Link to={`/playlistvideos/${playlists._id}`} ><button
                 className=" "
-                onClick={() => {
-                  console.log(playlists.videos);
-                  playlists.videos.map((video) => {
-                   return ShowallVideos(video);
-                  });
-                }}
               >
                 See Videos
               </button>
-              
+              </Link> */}
             </span>
           </div>
         </>
@@ -83,8 +77,30 @@ export default function Playlist() {
   if (playlist.length !== 0)
     return (
       <div>
-        <h2>Playlist</h2>
+       
         {playlist.map(Showiteminplaylist)}
+        <div>
+          <a href="#open-modal" className="link-btn">
+            Create Playlist
+          </a>
+        </div>
+        <div id="open-modal" class="modal-window">
+          <div>
+            <a href="/playlist" title="Close" className="modal-close">
+              Close
+            </a>
+            <h1>Create Your Playlist</h1>
+            <div>
+              <input
+                placeholder="Enter Playlist name"
+                onChange={(e) => setplaylistname(e.target.value)}
+              />
+            </div>
+            <div>
+              <button onClick={() => Createplaylist()}>Create</button>
+            </div>
+          </div>
+        </div>
       </div>
     );
   else {
@@ -98,7 +114,7 @@ export default function Playlist() {
         </div>
         <div id="open-modal" class="modal-window">
           <div>
-            <a href="/" title="Close" className="modal-close">
+            <a href="/playlist" title="Close" className="modal-close">
               Close
             </a>
             <h1>Create Your Playlist</h1>
