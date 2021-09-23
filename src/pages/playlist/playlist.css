@@ -157,3 +157,89 @@ a.link-btn:hover,
 a.link-btn:active {
   box-shadow: 0 5px 9px 0 rgb(114, 114, 114);
 }
+
+.playlist-show{
+  display:flex;
+    max-width:400px;
+    margin:auto;
+    border-radius: 7px;
+    justify-content: space-evenly;
+    background-color: #444;
+    color: #fff;
+     padding:2rem 0;
+}
+.playlist-left{
+   flex-basis: 60%;
+
+}
+.playlist-right{
+  flex-basis:20%;
+  text-align: right;
+}
+.playlist-right button {
+  outline:none;
+  border:none;
+  /* padding:0.4rem 0.8rem; */
+  border-radius: 5px;
+  font-size: 1.1rem;
+  background-color: #444;
+  color: #777;
+}
+.playlist-btn{
+  outline:none;
+  border:none;
+  padding:0.4rem 0.8rem;
+  display:block;
+  margin-top:0.5rem;
+  border-radius: 5px;
+  font-size: 1.1rem;
+}
+.createplaylist-btn{
+  outline:none;
+  border:none;
+  padding:0.4rem 0.8rem;
+  display:block;
+  margin:2rem;
+  font-size: 1.1rem;
+  border-radius: 5px;
+}
+.playlist-input{
+margin-top:0.5rem;
+padding:0.4rem 0.8rem;
+outline: none;
+border: none;
+border-radius: 5px;
+font-size: 1.1rem;
+}
+.playlist-btn:hover,.remove-btn:hover,.createplaylist-btn:hover {
+  cursor: pointer;
+  background-color: #666;
+  color: #ddd;
+}
+.remove-btn{
+  outline:none;
+  border:none;
+  padding:0.3rem 0.7rem;
+  margin-right:0.4rem;
+  border-radius: 5px;
+  font-size: 1rem;}
+
+  .playlist-add{
+    display:flex;
+       width:100%;
+       margin-top:0.5rem;
+       padding-left:0.5rem ;
+       border-top: 2px solid #ddd;
+       
+  }
+  .x{
+     flex-basis: 50%;
+  }
+  .y{
+    flex-basis: 50%;
+    
+    color:#333;
+    text-align: end;
+  }
+ 
+ 

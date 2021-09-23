@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 export default function Playlist() {
   const [playlist_name, setplaylistname] = useState();
   const { playlist, playlistdispatch } = usePlaylist();
+  const [show,setshow]=useState(false);
 
   const removefromplaylist = (id) => {
     (async () => {
@@ -58,13 +59,13 @@ export default function Playlist() {
             <li key={playlists._id}> {playlists.playlistname}</li>
             <span>
               <button
-                className=" "
+                className="remove-btn"
                 onClick={() => removefromplaylist(playlists._id)}
               >
                 Remove
               </button>
               <Link to={`/playlistvideos/${playlists._id}`} ><button
-                className=" "
+                className="remove-btn"
               >
                 See Videos
               </button>
@@ -81,27 +82,33 @@ export default function Playlist() {
        
         {playlist.map(Showiteminplaylist)}
         <div>
-          <a href="#open-modal" className="link-btn">
+          <button className="createplaylist-btn" onClick={()=>{setshow(true)
+          console.log(show)}}>
             Create Playlist
-          </a>
+          </button>
         </div>
-        <div id="open-modal" class="modal-window">
-          <div>
-            <a href="/playlist" title="Close" className="modal-close">
-              Close
-            </a>
-            <h1>Create Your Playlist</h1>
-            <div>
-              <input
+        
+        {show && 
+        <div className="playlist-show">
+          
+         
+            <div className="playlist-left">
+            <h3>Create Your Playlist</h3>
+              <input className="playlist-input"
                 placeholder="Enter Playlist name"
+                spellCheck={true}
                 onChange={(e) => setplaylistname(e.target.value)}
               />
+              <button className="playlist-btn" onClick={() => Createplaylist()}>Create</button>
             </div>
-            <div>
-              <button onClick={() => Createplaylist()}>Create</button>
+            
+            <div className="playlist-right">
+            <button onClick={()=>setshow(false)}title="Close">
+              Close
+            </button>
             </div>
-          </div>
-        </div>
+        </div>}
+
       </div>
     );
   else {

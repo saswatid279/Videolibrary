@@ -4,11 +4,13 @@ import { useLikedvideo } from "../../context/likedvideo-context";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./modal.css";
+import { useState } from "react";
 
-export default function Modal({ video ,setshow}) {
+export default function Modal({ video, setshow }) {
   const { likedvideodispatch } = useLikedvideo();
   const { watchlaterdispatch } = useWatchlater();
   const { playlist } = usePlaylist();
+  const [showmodal, setshowmodal] = useState(false);
 
   const Addtolikedvideos = () => {
     (async () => {
@@ -56,25 +58,28 @@ export default function Modal({ video ,setshow}) {
     })();
   };
 
-  function Showplaylist(pList){
-    return(
-    <div>
-      
-    <span onClick={()=>Addtoplaylist(pList._id)}>{pList.playlistname}</span>
-    </div>)
+  function Showplaylist(pList) {
+    return (
+      <div>
+        <span className="playlist-namee" onClick={() => Addtoplaylist(pList._id)}>
+          {pList.playlistname}
+        </span>
+      </div>
+    );
   }
-  
+
   const Addtoplaylist = (playlistId) => {
     (async () => {
       const { success, updatedplaylist: data } = await axios
         .post(`https://VL.saswatidas.repl.co/playlists/addtoplaylist`, {
-          playlistId:playlistId, videoId:video._id
+          playlistId: playlistId,
+          videoId: video._id,
         })
         .then((response) => {
           return response.data;
         });
       if (success) {
-        alert("Added to playlist")
+        alert("Added to playlist");
         console.log(data);
         //playlistdispatch({ type: "FETCH", payload: data });
       } else {
@@ -83,37 +88,53 @@ export default function Modal({ video ,setshow}) {
     })();
   };
 
-  if(playlist.length===0){
+  if (playlist.length === 0) {
     return (
       <div className="modal-container">
-          
-          <Link id="link" to="/playlist"><span className="modal-btn" >Create playlist</span></Link>
-          <span className="modal-btn" onClick={() => Addtowatchlater()}>Save to watch later</span>
-          <span className="modal-btn" onClick={() => Addtolikedvideos()}>Save to liked videos</span>
-          <span className="modal-btn" onClick={()=>setshow(false)}>Close</span>
+        <Link id="link" to="/playlist">
+          <span className="modal-btn">Create playlist</span>
+        </Link>
+        <span className="modal-btn" onClick={() => Addtowatchlater()}>
+          Save to watch later
+        </span>
+        <span className="modal-btn" onClick={() => Addtolikedvideos()}>
+          Save to liked videos
+        </span>
+        <span className="modal-btn" onClick={() => setshow(false)}>
+          Close
+        </span>
       </div>
     );
   }
   return (
-    <div className="modal-container">
-        <span className="modal-btn">
-          <a href="#open-modal">
-           Add to playlist
-          </a>
-          </span>
-
-          <div id="open-modal" class="modal-window" >
-          <div>
-            <a href="/videos" title="Close" className="modal-close">
-              Close
-            </a>
-            <span>{playlist.map(Showplaylist)}</span>
+    <>
+      <div className="modal-container">
+        <span className="modal-btn" onClick={() => setshowmodal(true)}>
+          Add to playlist
+        </span>
+        <span className="modal-btn" onClick={() => Addtowatchlater()}>
+          Save to watch later
+        </span>
+        <span className="modal-btn" onClick={() => Addtolikedvideos()}>
+          Save to liked videos
+        </span>
+        <span className="modal-btn" onClick={() => setshow(false)}>
+          Close
+        </span>
+        {showmodal && (
+          <div className="playlist-add">
+            <div className="playlist-left x">
+              <h4>Select a playlist</h4>
+              <span>{playlist.map(Showplaylist)}</span>
+            </div>
+            <div className="playlist-right y">
+              <button onClick={() => setshowmodal(false)} title="Close">
+                Close
+              </button>
+            </div>
           </div>
-        </div>
-
-        <span className="modal-btn" onClick={() => Addtowatchlater()}>Save to watch later</span>
-        <span className="modal-btn" onClick={() => Addtolikedvideos()}>Save to liked videos</span>
-        <span className="modal-btn" onClick={()=>setshow(false)}>Close</span>
-    </div>
+        )}
+      </div>
+    </>
   );
 }

@@ -27,3 +27,19 @@
     color:#fff;
     margin:0.3rem 0;
 }
+
+.playlist-namee{
+    padding:0.3rem ;
+    margin:0.2rem 0;
+    display:inline-block;
+    border:1px solid #eee;
+
+}
+
+.playlist-namee:hover{
+    border:1px solid #eee;
+    background-color: #eee;
+    color:#000;
+    cursor:pointer;
+
+}
