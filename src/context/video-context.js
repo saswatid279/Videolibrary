@@ -11,7 +11,7 @@ export const VideoProvider = ({ children }) => {
   useEffect(() => {
     (async () => {
       const { videos: data } = await axios
-        .get("https://videolibrary.saswatidas.repl.co/videos")
+        .get("https://VL.saswatidas.repl.co/videos")
         .then((response) => {
           //console.log(success);
           return response.data;

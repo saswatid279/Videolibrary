@@ -5,7 +5,7 @@ export default function Watchlatermodal({video}){
     const removefromwatchlater = (id) => {
         (async () => {
           const { success } = await axios
-            .delete(`https://videolibrary.saswatidas.repl.co/watchlater/${id}`)
+            .delete(`https://VL.saswatidas.repl.co/watchlater/${id}`)
             .then((response) => {
               return response.data;
             });

@@ -11,7 +11,7 @@ export const LikedvideoProvider = ({ children }) => {
   useEffect(() => {
     (async () => {
       const { videos: data } = await axios
-        .get("https://videolibrary.saswatidas.repl.co/likedvideos")
+        .get("https://VL.saswatidas.repl.co/likedvideos")
         .then((response) => {
           return response.data;
         });

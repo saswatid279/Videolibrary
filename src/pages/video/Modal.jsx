@@ -13,7 +13,7 @@ export default function Modal({ video ,setshow}) {
   const Addtolikedvideos = () => {
     (async () => {
       const { success, video: data } = await axios
-        .post("https://videolibrary.saswatidas.repl.co/likedvideos", {
+        .post("https://VL.saswatidas.repl.co/likedvideos", {
           _id: video._id,
           name: video.name,
           imageurl: video.imageurl,
@@ -36,7 +36,7 @@ export default function Modal({ video ,setshow}) {
   const Addtowatchlater = () => {
     (async () => {
       const { success, video: data } = await axios
-        .post("https://videolibrary.saswatidas.repl.co/watchlater", {
+        .post("https://VL.saswatidas.repl.co/watchlater", {
           _id: video._id,
           name: video.name,
           imageurl: video.imageurl,
@@ -67,7 +67,8 @@ export default function Modal({ video ,setshow}) {
   const Addtoplaylist = (playlistId) => {
     (async () => {
       const { success, updatedplaylist: data } = await axios
-        .post(`https://VL.saswatidas.repl.co/playlists/${playlistId}/${video._id}`, {
+        .post(`https://VL.saswatidas.repl.co/playlists/addtoplaylist`, {
+          playlistId:playlistId, videoId:video._id
         })
         .then((response) => {
           return response.data;

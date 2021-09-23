@@ -6,7 +6,7 @@ export default function Likevideomodal({ video }){
     const removefromlikedvideo = (id) => {
         (async () => {
           const { success } = await axios
-            .delete(`https://videolibrary.saswatidas.repl.co/likedvideos/${id}`)
+            .delete(`https://VL.saswatidas.repl.co/likedvideos/${id}`)
             .then((response) => {
               return response.data;
             });

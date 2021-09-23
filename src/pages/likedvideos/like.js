@@ -50,7 +50,7 @@ export default function Likedvideos() {
   if (likedvideo.length !== 0)
     return (
       <>
-        <h2>Playlist</h2>
+        
         {likedvideo.map(Showiteminlikedvideo)}
       </>
     );

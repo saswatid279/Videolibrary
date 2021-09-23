@@ -2,7 +2,7 @@ import { usePlaylist } from "../../context/playlist-context";
 import "./playlist.css";
 import axios from "axios";
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 
 export default function Playlist() {
   const [playlist_name, setplaylistname] = useState();
@@ -11,7 +11,7 @@ export default function Playlist() {
   const removefromplaylist = (id) => {
     (async () => {
       const { success } = await axios
-        .delete(`https://videolibrary.saswatidas.repl.co/playlists/${id}`)
+        .delete(`https://VL.saswatidas.repl.co/playlists/${id}`)
         .then((response) => {
           return response.data;
         });
@@ -25,9 +25,9 @@ export default function Playlist() {
   
   function Createplaylist() {
     (async () => {
-      const { success } = await axios
+      const { success,playlist:data } = await axios
         .post(
-          "https://videolibrary.saswatidas.repl.co/playlists/createplaylist",
+          "https://vl.saswatidas.repl.co/playlists/createplaylist",
           {
             playlistname: playlist_name
           }
@@ -37,7 +37,8 @@ export default function Playlist() {
         });
 
       if (success) {
-        playlistdispatch({ type: "CREATE_PLAYLIST", payload: playlist_name });
+        alert("playlist is created")
+        playlistdispatch({ type: "CREATE_PLAYLIST", payload: data });
       } else {
         console.log("error");
       }
@@ -62,12 +63,12 @@ export default function Playlist() {
               >
                 Remove
               </button>
-              {/* <Link to={`/playlistvideos/${playlists._id}`} ><button
+              <Link to={`/playlistvideos/${playlists._id}`} ><button
                 className=" "
               >
                 See Videos
               </button>
-              </Link> */}
+              </Link>
             </span>
           </div>
         </>

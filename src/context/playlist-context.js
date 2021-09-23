@@ -23,7 +23,7 @@ export const PlaylistProvider = ({ children }) => {
 
   return (
     <PlaylistContext.Provider
-      value={{ playlist: state.playlist, playlistdispatch }}
+      value={{ playlist: state.playlist, playlistvideos:state.playlistvideos,playlistdispatch }}
     >
       {children}
     </PlaylistContext.Provider>

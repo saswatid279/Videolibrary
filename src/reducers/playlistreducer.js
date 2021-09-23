@@ -28,6 +28,12 @@ export function playlistReducer(state, action) {
         ...state,
         playlist: state.playlist.filter((item) => item._id !== action.payload)
       };
+
+    case "REMOVE_FROM_PLAYLIST":
+      return {
+        ...state,
+        playlistvideos: state.playlistvideos.filter((item) => item._id !== action.payload)
+      };
     default:
       return state;
   }
